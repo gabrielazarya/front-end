@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BroDesign</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <style>
+      .navbar {
+          background: rgba(0, 0, 0, 0.5);
+      }
+
+      .navbar-brand {
+          font-weight: 700;
+          border-left: 2px solid limegreen !important;
+          padding-left: 10px;
+      }
+
+      .navbar .navbar-nav .nav-link {
+          font-weight: 500;
+          font-size: .9rem;
+          transition: 250ms;
+          color: #ffffff !important;
+      }
+
+      .navbar .navbar-nav .nav-link.active, .navbar .navbar-nav .nav-link:hover {
+          color: limegreen !important;
+      }
+
+      .carousel img {
+          width: 100%;
+          height: 100vh;
+          object-fit: cover;
+      }
+
+      .carousel .card {
+          background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .section-1 {
+          background-color: #111111;
+          color: #ffffff;
+      }
+
+      .section-1 h5 {
+          font-weight: 400;
+      }
+
+      .section-1 i {
+          font-size: 40px;
+          color: limegreen;
+      }
+
+      .section-2, .section-3, .section-4, .section-5 {
+          padding-left: 100px;
+          padding-right: 100px;
+      }
+
+      .line {
+          width: 50px;
+          height: 2px;
+          background-color: limegreen;
+      }
+
+      .section-2 .card-img-top {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+      }
+
+      .section-2 .card-title {
+          font-weight: 700 !important;
+      }
+
+      .section-2 .card-body {
+          position: relative;
+      }
+
+      .section-2 .circle {
+          background-color: limegreen;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          position: absolute;
+          top: -20px;
+          left: 0;
+          right: 0;
+          border: 2px solid #ffffff;
+          display: flex;
+      }
+
+      .navbar-brand {
+          letter-spacing: 1px;
+      }
+
+      .title {
+          font-weight: 800;
+      }
+
+      .section-2 .circle i {
+          color: #ffffff;
+          font-size: 20px;
+      }
+
+      .section-3 .category .btn {
+          font-size: .8rem;
+          color: grey;
+          font-weight: 600;
+          transition: 250ms;
+      }
+
+      .section-3 .category .btn:hover, .section-3 .category .btn.active {
+          background-color: limegreen !important;
+          color: #ffffff;
+      }
+
+      .section-3 .card-img-top {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+      }
+
+      .section-3 .item {
+          transition: 250ms;
+      }
+
+      .card-title {
+          font-weight: 700;
+      }
+
+      .section-3 p {
+          color: grey;
+      }
+
+      .section-3 .overlay {
+          z-index: -9999;
+          background-color: rgba(0, 0, 0, 0.5);
+          width: 100%;
+          height: 200px;
+          position: absolute;
+          opacity: 0;
+          transition: 250ms;
+      }
+
+      .section-3 .card-img-top:hover + .overlay, .section-3 .overlay:hover {
+          z-index: 9999;
+          opacity: 1;
+      }
+
+      .section-3 .overlay .btn {
+          width: 50px;
+          height: 50px;
+      }
+
+      .section-3 .overlay .btn:hover {
+          background-color: limegreen;
+          color: #ffffff;
+      }
+
+      .section-3 .overlay i {
+          font-size: 20px;
+      }
+
+      body {
+          position: relative;
+      }
+
+      .image-preview {
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.5);
+          top: 0;
+          z-index: -99999;
+          opacity: 0;
+          transition: 250ms;
+      }
+
+      .image-preview.active {
+          z-index: 99999;
+          opacity: 1;
+      }
+
+      .image-container {
+          width: 80vw;
+          height: 80vh;
+          background-color: #ffffff;
+          border-radius: 10px;
+      }
+
+      .image-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: inherit;
+      }
+
+      .section-4 .carousel .carousel-item {
+          /*height: 320px;*/
+      }
+
+      .section-4 .carousel-indicators li.active {
+          background-color: limegreen;
+      }
+
+      .section-4 .carousel-indicators li {
+          background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .section-4 .carousel .carousel-item img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 50%;
+      }
+
+      .section-4 .carousel .carousel-caption {
+          bottom: auto;
+          color: #111111;
+      }
+
+      .section-4 .carousel .carousel-caption p {
+          color: grey;
+      }
+
+      .section-5 img {
+          width: 230px;
+          height: 230px;
+          object-fit: cover;
+      }
+
+      .section-5 .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: -999;
+          width: 230px;
+          height: 230px;
+          background-color: rgba(0, 0, 0, 0.8);
+          opacity: 0;
+          transition: 250ms;
+          color: #ffffff;
+      }
+
+      .section-5 a {
+          text-decoration: none;
+          color: #ffffff;
+      }
+
+      .section-5 img:hover + .overlay, .section-5 .overlay:hover {
+          z-index: 999;
+          opacity: 1;
+      }
+
+      .section-6 {
+          padding-left: 100px;
+          padding-right: 100px;
+      }
+
+      .section-6 .font-weight-bold {
+          color: grey;
+      }
+
+      .section-6 i {
+          color: limegreen;
+          font-size: 40px;
+      }
+
+      .section-6 .submit {
+          background-color: limegreen;
+          color: #ffffff;
+      }
+
+      body {
+          background-color: #eeeeee;
+      }
+
+      .section-4 .carousel-caption {
+          position: static;
+      }
+
+      footer {
+          background-color: #111111;
+          color: #ffffff;
+      }
+
+      footer .title {
+          font-weight: 500 !important;
+      }
+
+      footer a {
+          text-decoration: none !important;
+          color: #ffffff;
+      }
+
+      footer a:hover {
+          color: limegreen;
+      }
+
+      footer p {
+          font-size: 0.9rem;
+      }
+
+      footer .btn.submit {
+          background-color: limegreen;
+          color: #ffffff;
+      }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a href="#" class="navbar-brand">BroDesign</a>
+
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarCollapse" class="collapse navbar-collapse">
+    <div class="navbar-nav ml-auto">
+      <a href="#carousel" class="nav-link">BERANDA</a>
+      <a href="#aboutUs" class="nav-link">TENTANG KAMI</a>
+      <a href="#portfolio" class="nav-link">PORTOFOLIO</a>
+      <a href="#ourTeam" class="nav-link">TIM KAMI</a>
+      <a href="#contactUs" class="nav-link">HUBUNGI KAMI</a>
+    </div>
+  </div>
+</nav>
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+  <div>
+    <ol class="carousel-indicators">
+      <li class="active" data-target="#carousel" data-slide-to="0"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+      <li data-target="#carousel" data-slide-to="3"></li>
+      <li data-target="#carousel" data-slide-to="4"></li>
+      <li data-target="#carousel" data-slide-to="5"></li>
+    </ol>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="image/slider/1_batik.jpg" alt="Batik">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="image/slider/2_tea.jpg" alt="Tea">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="image/slider/3_cirebon.jpg" alt="Cirebon">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="image/slider/4_grande.jpg" alt="Grande 1">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="image/slider/4_grande2.jpg" alt="Grande 2">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="image/slider/5_bubur.jpg" alt="Bubur">
+      <div class="carousel-caption">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-5 ml-auto">
+            <div class="card text-left border-0">
+              <div class="card-body">
+                <h4 class="card-title">Grande Valore</h4>
+                <p class="card-text mb-0">Sebagai salah satu Zona Ekonomi khusus di Jawa Barat, Cikarang tumbuh menjadi
+                  tujuan utama untuk investasi industri asing. Khususnya dari perusahaan besar Jepang. Terletak di pusat
+                  Kawasan Industri Jababeka di Cikarang, Grande Valore Hotel dan Condominium akan menjawab permintaan
+                  ekspatriat Jepang untuk akomodasi premium</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#carousel" class="carousel-control-prev" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a href="#carousel" class="carousel-control-next" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+<div class="section-1 container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-4 col-xl-4 py-4 px-5">
+      <i class="ion-ios-book-outline"></i>
+      <h5>Diskusikan</h5>
+      <p>Diskusikan dengan kami kebutuhan desain anda, kami siap mendengar dan mencatat</p>
+    </div>
+    <div class="col-12 col-md-4 col-xl-4 py-4 px-5">
+      <i class="ion-ios-clock-outline"></i>
+      <h5>Waktu</h5>
+      <p>Beri kami waktu, desain anda akan kami rancang sedemikian rupa sesuai waktu kesepakatan</p>
+    </div>
+    <div class="col-12 col-md-4 col-xl-4 py-4 px-5">
+      <i class="ion-ios-heart-outline"></i>
+      <h5>Hasil Desain</h5>
+      <p>Hasil desain yang memuaskan klien adalah tujuan utama kami dalam setiap rancangan</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-2 py-5 text-center d-flex flex-column">
+  <h4 id="aboutUs" class="title mb-3">TENTANG KAMI</h4>
+  <div class="line mx-auto mb-3"></div>
+  <p class="mb-3">BroDesign adalah perusahaan Jasa Desain Grafis yang berbasis di Surabaya. Berdiri sejak 2012 dan sudah
+    melayani
+    ribuan klien dalam skala Nasional maupun Internasional</p>
+  <div class="row">
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto">
+      <div class="card">
+        <img class="card-img-top" src="image/about-layanan.jpg" alt="Layanan">
+        <div class="card-body">
+          <div class="circle mx-auto">
+            <i class="ion-ios-timer-outline m-auto"></i>
+          </div>
+          <h5 class="card-title text-center">Layanan Tepat Waktu</h5>
+          <p class="mb-0">Bagi kami, ketepatan waktu adalah janji yang harus dipenuhi dengan klien. Kami pastikan desain
+            kami hadir
+            sesuai dengan waktu yang telah disepakati antara kedua belah pihak</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto">
+      <div class="card">
+        <img class="card-img-top" src="image/about-konsep.jpg" alt="Konsep">
+        <div class="card-body">
+          <div class="circle mx-auto">
+            <i class="ion-ios-paper-outline m-auto"></i>
+          </div>
+          <h5 class="card-title text-center">Konsep Kuat</h5>
+          <p class="mb-0">Konsep Desain kami yang kuat selalu menunjukkan sebuah konsep yang kuat dan pada akhirnya akan
+            menghasilkan kualitas desain dan produk yang dapat diandalkan</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto">
+      <div class="card">
+        <img class="card-img-top" src="image/about-hasil.jpg" alt="Layanan">
+        <div class="card-body">
+          <div class="circle mx-auto">
+            <i class="ion-ios-eye-outline m-auto"></i>
+          </div>
+          <h5 class="card-title text-center">Hasil Optimal</h5>
+          <p class="mb-0">Hasil rancangan dan hasil akhir yang diperoleh selalu kami pastikan sama. Sehingga kepuasan
+            dari klien dapat kami jaga secara terus menerus</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-3 py-5 text-center d-flex flex-column mb-3">
+  <h4 id="portfolio" class="title mb-3">PORTFOLIO KAMI</h4>
+  <div class="line mx-auto mb-4"></div>
+
+  <div class="category d-xl-flex mb-4">
+    <button class="btn ml-auto mr-1 active mb-2" value="1">SEMUA</button>
+    <button class="btn mx-1 mb-2" value="2">IDENTITAS BRAND</button>
+    <button class="btn mx-1 mb-2" value="3">DESAIN CETAK</button>
+    <button class="btn mr-auto ml-1 mb-2" value="4">DESAIN KEMASAN</button>
+  </div>
+
+  <div class="row">
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="2">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p1.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p1.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">MAGENTA</h5>
+          <p class="mb-0">IDENTITAS BRAND</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="2">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p2.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p2.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Bertiga</h5>
+          <p class="mb-0">IDENTITAS BRAND</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="3">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p3.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p3.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Grande Valore</h5>
+          <p class="mb-0">DESAIN CETAK</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="4">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p4.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p4.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Sunkrisps</h5>
+          <p class="mb-0">DESAIN KEMASAN</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="2">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p5.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p5.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Website</h5>
+          <p class="mb-0">IDENTITAS BRAND</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="2">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p6.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p6.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Orchidea</h5>
+          <p class="mb-0">IDENTITAS BRAND</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="2">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p7.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p7.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Batikita</h5>
+          <p class="mb-0">IDENTITAS BRAND</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="3">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p8.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p8.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Calendar</h5>
+          <p class="mb-0">DESAIN CETAK</p>
+        </div>
+      </div>
+    </div>
+    <div class="item col-12 col-md-6 col-lg-4 col-xl-4 mb-3 mx-auto" data-category="3">
+      <div class="card">
+        <img class="card-img-top" src="image/portfolio/p9.jpg" alt="Portfolio">
+        <div class="overlay d-flex flex-column">
+          <div class="my-auto d-flex">
+            <button class="btn ml-auto mr-1 rounded-circle" onclick="viewImage('image/portfolio/p9.jpg')">
+              <i class="ion-ios-eye-outline"></i>
+            </button>
+            <button class="btn mr-auto ml-1 rounded-circle">
+              <i class="ion-android-arrow-forward"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center mb-1">Calendar</h5>
+          <p class="mb-0">DESAIN CETAK</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-4 py-5 text-center d-flex flex-column mb-3">
+  <h4 class="title mb-3">TESTIMONIALS</h4>
+  <div class="line mx-auto mb-4"></div>
+
+  <div id="carouselT" class="carousel slide" data-ride="carousel">
+    <div>
+      <ol class="carousel-indicators">
+        <li class="active" data-target="#carouselT" data-slide-to="0"></li>
+        <li data-target="#carouselT" data-slide-to="1"></li>
+        <li data-target="#carouselT" data-slide-to="2"></li>
+        <li data-target="#carouselT" data-slide-to="3"></li>
+      </ol>
+    </div>
+
+    <div class="carousel-inner mb-4">
+      <div class="carousel-item active">
+        <div class="carousel-caption">
+          <img class="mb-2" src="image/testimonial-1.png" alt="Testimonial 1">
+          <h5 class="title mb-0">Julia Putri</h5>
+          <p>Cafe Owner</p>
+          <p><i>Sebagai cafe owner, saya sering kali memerlukan tambahan desain untuk menunjang publikasi saya
+            agar mendapat perhatian. BroDesign mampu memberikan solusi mewah dengan harga ekonomis</i></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <img class="mb-2" src="image/testimonial-2.png" alt="Testimonial 2">
+          <h5 class="title mb-0">Aulia Rahma</h5>
+          <p>Beauty Ambassador</p>
+          <p><i>Sebagai style ambassador, saya sering kali memerlukan tambahan desain untuk menunjang publikasi saya
+            agar mendapat perhatian. BroDesign mampu memberikan solusi mewah dengan harga ekonomis</i></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <img class="mb-2" src="image/testimonial-3.png" alt="Testimonial 3">
+          <h5 class="title mb-0">Kevin Anugerah</h5>
+          <p>Car Company Owner</p>
+          <p><i>Sebagai car company owner, saya sering kali memerlukan tambahan desain untuk menunjang publikasi saya
+            agar mendapat perhatian. BroDesign mampu memberikan solusi mewah dengan harga ekonomis</i></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <img class="mb-2" src="image/testimonial-4.jpg" alt="Testimonial 4">
+          <h5 class="title mb-0">Bagas Dua</h5>
+          <p>Travel Agent</p>
+          <p><i>Sebagai travel agent, saya sering kali memerlukan tambahan desain untuk menunjang publikasi saya
+            agar mendapat perhatian. BroDesign mampu memberikan solusi mewah dengan harga ekonomis</i></p>
+        </div>
+      </div>
+    </div>
+
+    <a href="#carouselT" class="carousel-control-prev" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a href="#carouselT" class="carousel-control-next" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</div>
+
+<div id="ourTeam" class="section-5 py-5 text-center d-flex flex-column mb-3">
+  <h4 class="title mb-3">TIM KAMI</h4>
+  <div class="line mx-auto mb-4"></div>
+
+  <p class="mb-4">Kami didukung oleh tim yang telah berpengalaman dalam berbagai jenis desain</p>
+
+  <div class="row">
+    <div class="col col-xl-3 d-flex mb-2">
+      <img class="mx-auto" src="image/tim-1.png" alt="Tim 1">
+      <div class="overlay mx-auto d-flex flex-column">
+        <div class="my-auto">
+          <h5>Hasan Abi</h5>
+          <p><i>Web Designer</i></p>
+          <div>
+            <a class="mx-1" href="#">
+              <i class="ion-social-twitter"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-facebook"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-googleplus"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-xl-3 d-flex mb-2">
+      <img class="mx-auto" src="image/tim-2.png" alt="Tim 2">
+      <div class="overlay mx-auto d-flex flex-column">
+        <div class="my-auto">
+          <h5>Putri Dahlia</h5>
+          <p><i>Web Designer</i></p>
+          <div>
+            <a class="mx-1" href="#">
+              <i class="ion-social-twitter"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-facebook"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-googleplus"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-xl-3 d-flex mb-2">
+      <img class="mx-auto" src="image/tim-3.png" alt="Tim 3">
+      <div class="overlay mx-auto d-flex flex-column">
+        <div class="my-auto">
+          <h5>Bagus Setiawan</h5>
+          <p><i>Web Designer</i></p>
+          <div>
+            <a class="mx-1" href="#">
+              <i class="ion-social-twitter"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-facebook"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-googleplus"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-xl-3 d-flex">
+      <img class="mx-auto" src="image/tim-4.png" alt="Tim 4">
+      <div class="overlay mx-auto d-flex flex-column">
+        <div class="my-auto">
+          <h5>Aulia Putri Hapsari</h5>
+          <p><i>Web Designer</i></p>
+          <div>
+            <a class="mx-1" href="#">
+              <i class="ion-social-twitter"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-facebook"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-googleplus"></i>
+            </a>
+            <a class="mx-1" href="#">
+              <i class="ion-social-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contactUs" class="section-6 py-5 text-center">
+  <h4 class="title mb-3">HUBUNGI KAMI</h4>
+  <div class="line mx-auto mb-4"></div>
+
+  <p class="mb-5">Anda memiliki sejumlah pertanyaan atau hal-hal yang perlu anda diskusikan dengan kami terkait
+    kebutuhan desain anda? Silahkan hubungi kami melalui form berikut ini</p>
+
+  <div class="row mb-5">
+    <div class="col-12 col-lg-4 text-center">
+      <i class="ion-ios-location-outline"></i>
+      <h6 class="font-weight-bold">ALAMAT</h6>
+      <h6>Jl. Jagir Etan Kulon No 101 Surabaya, Jawa Timur, Indonesia</h6>
+    </div>
+    <div class="col-12 col-lg-4 text-center">
+      <i class="ion-ios-telephone-outline"></i>
+      <h6 class="font-weight-bold">NOMOR TELEPON</h6>
+      <h6>+62 813 3511 1153</h6>
+    </div>
+    <div class="col-12 col-lg-4 text-center">
+      <i class="ion-ios-email-outline"></i>
+      <h6 class="font-weight-bold">EMAIL</h6>
+      <h6>sales@moderdesign.com</h6>
+    </div>
+  </div>
+
+  <form action="#">
+    <div class="row no-gutters">
+      <div class="col-lg-6 pr-lg-1 pb-2">
+        <input type="text" class="form-control" placeholder="Nama Anda">
+      </div>
+      <div class="col-lg-6 pl-lg-1 mb-2">
+        <input type="email" class="form-control" placeholder="Email Anda">
+      </div>
+    </div>
+    <input type="text" class="form-control mb-2" placeholder="Subject">
+    <textarea class="form-control mb-2" cols="30" rows="5" placeholder="Isi Pesan Anda"></textarea>
+    <button class="btn submit">Kirim Pesan</button>
+  </form>
+</div>
+
+<div id="imagePreview" class="image-preview d-flex">
+  <div class="image-container m-auto">
+    <img src="image/portfolio/p1.jpg" alt="Portfolio">
+    <div class="d-flex">
+      <button class="btn bg-transparent text-white ml-auto" onclick="closeImagePreview()">
+        <i class="ion-close"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-xl-3 p-4">
+      <h4 class="navbar-brand">BroDesign</h4>
+      <p>BroDesign percaya bahwa benih kreativitas hidup dalam setiap orang, untuk membuat dunia menjadi tempat yang
+        lebih baik inilah sebabnya kami mulai bekerja dengan orang orang yang melakukan pekerjaan dengan tujuan</p>
+    </div>
+    <div class="col-xl-3 p-4">
+      <div class="title">NAVIGASI</div>
+      <div class="line my-2"></div>
+      <div>
+        <a href="#carousel">Beranda</a>
+      </div>
+      <div>
+        <a href="#aboutUs">Tentang Kami</a>
+      </div>
+      <div>
+        <a href="#portfolio">Portfolio</a>
+      </div>
+      <div>
+        <a href="#ourTeam">Tim Kami</a>
+      </div>
+      <div>
+        <a href="#contactUs">Hubungi Kami</a>
+      </div>
+    </div>
+    <div class="col-xl-3 p-4">
+      <div class="title">HUBUNGI KAMI</div>
+      <div class="line my-2"></div>
+      <p class="mb-1">Jl. Jagir Etan Kulon No 101 Surabaya, Jawatimur 60123</p>
+      <p class="mb-1">Indonesia</p>
+      <p class="mb-1"><span class="font-weight-bold">Telp :</span> +62 813 3511 1153</p>
+      <p class="mb-2"><span class="font-weight-bold">Email :</span> sales@brodesign.com</p>
+      <div>
+        <a href="#">
+          <i class="mx-2 ion-social-twitter"></i>
+        </a>
+        <a href="#">
+          <i class="mx-2 ion-social-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="mx-2 ion-social-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="mx-2 ion-social-googleplus"></i>
+        </a>
+        <a href="#">
+          <i class="mx-2 ion-social-linkedin"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 p-4">
+      <div class="title">INFO KAMI</div>
+      <div class="line my-2"></div>
+      <p>Silahkan masukkan alamat email anda untuk berlangganan informasi dari kami. Anda dapat berhenti sewaktu
+        waktu</p>
+      <div class="form-group row no-gutters">
+        <div class="col-8">
+          <input class="form-control rounded-0" type="text">
+        </div>
+        <div class="col-4">
+          <button class="btn submit rounded-0">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const viewImage = (url) => {
+        $('#imagePreview img')[0].setAttribute('src', url)
+        $('#imagePreview').addClass('active')
+    }
+
+    const closeImagePreview = () => {
+        $('#imagePreview').removeClass('active')
+    }
+
+    const setCategory = (category) => {
+        $('.section-3 .row .item').each((index, element) => {
+            console.log(element.getAttribute('data-category'), element)
+
+            const itemCategory = element.getAttribute('data-category')
+
+            if (category === '1') {
+                element.classList.remove('d-none')
+            } else {
+                if (itemCategory !== category) {
+                    element.classList.add('d-none')
+                } else {
+                    element.classList.remove('d-none')
+                }
+            }
+        })
+
+        $('.section-3 .category .btn').removeClass('active')
+    }
+
+    $('.section-3 .category .btn').on('click', (e) => {
+        setCategory(e.target.value)
+        e.target.classList.add('active')
+    })
+</script>
+</body>
+</html>
